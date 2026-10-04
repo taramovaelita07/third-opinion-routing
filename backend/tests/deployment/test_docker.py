@@ -45,16 +45,15 @@ def test_docker_context_excludes_local_and_patient_state() -> None:
     assert "*.sqlite3" in dockerignore
     assert "**/__pycache__" in dockerignore
 
+def test_readme_exposes_public_demo_endpoints() -> None:
+    readme = _read("README.md")
 
-def test_offline_hackathon_runbook_covers_launch_demo_and_recovery() -> None:
-    runbook = _read("HACKATHON_RUNBOOK_RU.md")
-
-    assert "docker compose up --build" in runbook
-    assert "http://localhost:8000/patient" in runbook
-    assert "Сценарий показа жюри" in runbook
-    assert "Сбросить демо" in runbook
-    assert "Быстрое восстановление" in runbook
-
+    assert "https://third-opinion-routing.onrender.com/" in readme
+    assert "https://third-opinion-routing.onrender.com/patient" in readme
+    assert "https://third-opinion-routing.onrender.com/docs" in readme
+    assert "HACKATHON_RUNBOOK_RU.md" not in readme
+    assert "HACKATHON_DEMO_SPEECH_RU.md" not in readme
+    assert "DEPLOY_RENDER_RU.md" not in readme
 
 def test_render_blueprint_exposes_the_same_docker_application() -> None:
     blueprint = _read("render.yaml")

@@ -23,9 +23,6 @@
 - Health check: <http://localhost:8000/health>
 - [Архитектура](docs/ARCHITECTURE_RU.md)
 - [Сценарная валидация](docs/SCENARIO_VALIDATION_RU.md)
-- [Памятка для демонстрации](HACKATHON_RUNBOOK_RU.md)
-- [Текст выступления](HACKATHON_DEMO_SPEECH_RU.md)
-- [Публичное размещение](DEPLOY_RENDER_RU.md)
 
 Публичная демонстрация развёрнута на бесплатном тарифе Render. После периода
 бездействия первый запуск может занять около минуты.
