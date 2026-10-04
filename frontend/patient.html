@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Третье мнение — личный кабинет пациента" />
+    <title>Третье мнение · Кабинет пациента</title>
+    <link rel="stylesheet" href="/static/patient.css?v=1.4.0" />
+    <script src="/static/patient.js?v=1.4.0" defer></script>
+  </head>
+  <body>
+    <div class="patient-ambient patient-ambient-one"></div>
+    <div class="patient-ambient patient-ambient-two"></div>
+    <a class="patient-jury-switch" href="/"><span>↔</span><small>Для демонстрации</small><strong>Кабинет врача</strong></a>
+
+    <div class="patient-app">
+      <header class="patient-topbar">
+        <a class="patient-brand" href="/patient" aria-label="Третье мнение">
+          <span class="patient-brand-mark"><i></i><i></i><i></i></span>
+          <span><strong>Третье мнение</strong><small>Кабинет пациента</small></span>
+        </a>
+        <div class="patient-top-actions">
+          <a class="doctor-return" href="/">Кабинет врача</a>
+          <button class="notification-button" type="button" aria-label="Уведомления"><span>♢</span><i id="notification-dot"></i></button>
+          <div class="patient-mini-avatar" aria-label="Профиль пациента">МИ</div>
+        </div>
+      </header>
+
+      <main class="patient-content">
+        <section class="patient-view active" id="patient-home-view" data-patient-view="home">
+          <div class="patient-search-row">
+            <label class="patient-search"><span>⌕</span><input type="search" placeholder="Поиск по симптомам, анализам, врачам…" /></label>
+          </div>
+
+          <section class="patient-hero" aria-labelledby="patient-welcome-title">
+            <div class="body-visual">
+              <div class="scan-corners"></div>
+              <div class="body-tabs" aria-hidden="true"><span>⌁</span><span>◉</span><span class="active">♡</span><span>⌇</span><span>◌</span></div>
+              <img class="body-hologram" src="/static/assets/patient-body-hologram.png?v=1.0.1" alt="Обезличенная голографическая анатомическая модель пациента" />
+              <div class="body-caption"><span>Цифровая медкарта</span><strong>Обезличенная модель</strong></div>
+            </div>
+
+            <div class="patient-route-column">
+              <div class="welcome-copy"><span>Добрый день</span><h1 id="patient-welcome-title">Мария, ваше здоровье<br />под контролем</h1><p>Здесь появляется маршрут после проверки исследования врачом.</p></div>
+              <article class="patient-route-card" id="patient-route-card">
+                <div class="route-card-loading">Проверяем новые рекомендации…</div>
+              </article>
+            </div>
+          </section>
+
+          <section class="patient-actions" aria-label="Быстрые действия">
+            <button type="button" data-action="booking"><span class="action-symbol">▦</span><strong>Записаться<br />на приём</strong><small>Выбор даты и времени</small></button>
+            <button type="button" data-action="records"><span class="action-symbol">⌁</span><strong>Анализы и<br />исследования</strong><small>Результаты и заключения</small></button>
+            <button type="button" data-action="home-doctor"><span class="action-symbol">♙</span><strong>Вызвать врача<br />на дом</strong><small>Демонстрационный раздел</small></button>
+            <button type="button" data-action="documents"><span class="action-symbol">▤</span><strong>Медицинские<br />документы</strong><small>Справки и выписки</small></button>
+          </section>
+
+          <section class="upcoming-section" aria-labelledby="upcoming-title">
+            <div class="patient-section-heading"><div><span>Расписание</span><h2 id="upcoming-title">Ближайшие записи</h2></div><button type="button" data-action="all-appointments">Все записи ›</button></div>
+            <div class="appointments-list" id="appointments-list"></div>
+          </section>
+        </section>
+
+        <section class="patient-view" id="patient-card-view" data-patient-view="card">
+          <div class="patient-page-heading"><div><span>История здоровья</span><h1>Медицинская карта</h1><p>Исследования, заключения и подтверждённые маршруты.</p></div><div class="page-heading-icon">▤</div></div>
+          <label class="patient-search card-search"><span>⌕</span><input id="records-search" type="search" placeholder="Поиск по записям, анализам, врачам…" /></label>
+          <div class="record-filters" role="group" aria-label="Фильтры медицинской карты">
+            <button class="active" type="button" data-record-filter="all">Все</button>
+            <button type="button" data-record-filter="consultations">Консультации</button>
+            <button type="button" data-record-filter="diagnostics">Диагностика</button>
+            <button type="button" data-record-filter="laboratory">Лабораторные исследования</button>
+          </div>
+          <section class="medical-timeline" id="medical-timeline" aria-live="polite"></section>
+        </section>
+
+        <section class="patient-view" id="patient-profile-view" data-patient-view="profile">
+          <div class="patient-page-heading profile-heading"><div><span>Личный кабинет</span><h1>Профиль</h1></div><div class="support-icon">♬</div></div>
+          <article class="profile-person-card">
+            <div class="profile-avatar"><span class="avatar-head"></span><span class="avatar-body"></span></div>
+            <div><strong>Иванова Мария Игоревна</strong><span>Карта №4827319</span></div><i>›</i>
+          </article>
+          <div class="profile-layout">
+            <section class="profile-menu">
+              <button type="button"><span>▦</span><strong>Записи на приём</strong><i>›</i></button>
+              <button type="button"><span>♢</span><strong>Уведомления</strong><i>›</i></button>
+              <button type="button"><span>♡</span><strong>Избранное</strong><i>›</i></button>
+            </section>
+            <section class="profile-menu">
+              <button type="button"><span>⚙</span><strong>Настройки</strong><i>›</i></button>
+              <button type="button"><span>?</span><strong>Вопрос-ответ</strong><i>›</i></button>
+              <button type="button"><span>♙</span><strong>Безопасность</strong><i>›</i></button>
+              <button type="button"><span>i</span><strong>О приложении</strong><i>›</i></button>
+            </section>
+          </div>
+          <button class="logout-button" type="button"><span>↪</span>Выйти</button>
+        </section>
+      </main>
+
+      <nav class="patient-bottom-nav" aria-label="Навигация кабинета пациента">
+        <button class="active" type="button" data-patient-nav="home"><span>⌂</span><strong>Главная</strong></button>
+        <button type="button" data-patient-nav="card"><span>▤</span><strong>Медкарта</strong></button>
+        <button type="button" data-patient-nav="profile"><span>♙</span><strong>Профиль</strong></button>
+      </nav>
+    </div>
+
+    <div class="patient-toast" id="patient-toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

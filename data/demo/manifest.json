@@ -1,0 +1,163 @@
+[
+  {
+    "id": "ct-normal",
+    "title": "КТ ОГК — признаки патологии не выявлены",
+    "description": "Нормальное исследование с согласованными pathologyFlag и norma.",
+    "modality": "CT_CHEST",
+    "payload_file": "payloads/ct_normal.json",
+    "expected": {
+      "validation": "valid",
+      "finding_codes": [],
+      "route": "RESULT_DELIVERY",
+      "priority": "ROUTINE",
+      "specialty": null,
+      "timeframe": "CLINIC_STANDARD",
+      "human_review": false
+    }
+  },
+  {
+    "id": "ct-lung-nodule",
+    "title": "КТ ОГК — очаговое образование",
+    "description": "Одиночное очаговое образование правого лёгкого с измерениями.",
+    "modality": "CT_CHEST",
+    "payload_file": "payloads/ct_lung_nodule.json",
+    "expected": {
+      "validation": "valid",
+      "finding_codes": ["CT_LUNG_NODULE"],
+      "route": "SPECIALIST_CONSULTATION",
+      "priority": "HIGH",
+      "specialty": "PULMONOLOGY",
+      "timeframe": "CLINIC_CONFIGURED_HIGH_PRIORITY",
+      "human_review": true
+    }
+  },
+  {
+    "id": "ct-pneumothorax",
+    "title": "КТ ОГК — потенциальный red flag",
+    "description": "Структурированный признак пневмоторакса для проверки safety flow.",
+    "modality": "CT_CHEST",
+    "payload_file": "payloads/ct_pneumothorax.json",
+    "expected": {
+      "validation": "valid",
+      "finding_codes": ["CT_PNEUMOTHORAX"],
+      "route": "URGENT_CLINICAL_REVIEW",
+      "priority": "CRITICAL_REVIEW",
+      "specialty": "ON_DUTY_CLINICIAN",
+      "timeframe": "IMMEDIATE_REVIEW",
+      "human_review": true
+    }
+  },
+  {
+    "id": "mmg-birads-2",
+    "title": "Маммография — BI-RADS 2",
+    "description": "Согласованные доброкачественные структурированные признаки.",
+    "modality": "MAMMOGRAPHY",
+    "payload_file": "payloads/mmg_birads_2.json",
+    "expected": {
+      "validation": "valid",
+      "finding_codes": ["MMG_BENIGN_FINDING"],
+      "route": "PLANNED_FOLLOW_UP",
+      "priority": "ROUTINE",
+      "specialty": "BREAST_SPECIALIST",
+      "timeframe": "CLINIC_STANDARD",
+      "human_review": true
+    }
+  },
+  {
+    "id": "mmg-birads-4",
+    "title": "Маммография — BI-RADS 4",
+    "description": "Подозрительная находка справа, требующая подтверждения врачом.",
+    "modality": "MAMMOGRAPHY",
+    "payload_file": "payloads/mmg_birads_4.json",
+    "expected": {
+      "validation": "valid",
+      "finding_codes": ["MMG_SUSPICIOUS_FINDING"],
+      "route": "SPECIALIST_CONSULTATION",
+      "priority": "HIGH",
+      "specialty": "BREAST_SPECIALIST",
+      "timeframe": "CLINIC_CONFIGURED_HIGH_PRIORITY",
+      "human_review": true
+    }
+  },
+  {
+    "id": "ct-low-confidence",
+    "title": "КТ ОГК — низкая уверенность",
+    "description": "Корректный контракт с низкой вероятностью для Safety Layer.",
+    "modality": "CT_CHEST",
+    "payload_file": "payloads/ct_low_confidence.json",
+    "expected": {
+      "validation": "valid",
+      "finding_codes": ["CT_LUNG_NODULE"],
+      "route": "HUMAN_REVIEW",
+      "priority": "REVIEW",
+      "specialty": "RADIOLOGIST",
+      "timeframe": "BEFORE_ROUTING",
+      "human_review": true
+    }
+  },
+  {
+    "id": "conflicting-norma",
+    "title": "Конфликт pathologyFlag и norma",
+    "description": "Структурно корректный пример противоречия из BFT-контракта.",
+    "modality": "CT_CHEST",
+    "payload_file": "payloads/conflicting_norma.json",
+    "expected": {
+      "validation": "valid",
+      "finding_codes": [],
+      "route": "HUMAN_REVIEW",
+      "priority": "REVIEW",
+      "specialty": "RADIOLOGIST",
+      "timeframe": "BEFORE_ROUTING",
+      "human_review": true
+    }
+  },
+  {
+    "id": "unknown-modality",
+    "title": "Неподдерживаемая модальность",
+    "description": "Неизвестный блок probParams должен сохраниться без угадывания маршрута.",
+    "modality": "UNKNOWN",
+    "payload_file": "payloads/unknown_modality.json",
+    "expected": {
+      "validation": "valid",
+      "finding_codes": [],
+      "route": "HUMAN_REVIEW",
+      "priority": "REVIEW",
+      "specialty": "RADIOLOGIST",
+      "timeframe": "BEFORE_ROUTING",
+      "human_review": true
+    }
+  },
+  {
+    "id": "missing-ai-result",
+    "title": "Повреждённое сообщение",
+    "description": "В сообщении отсутствует обязательный объект aiResult.",
+    "modality": "UNKNOWN",
+    "payload_file": "payloads/missing_ai_result.json",
+    "expected": {
+      "validation": "invalid",
+      "finding_codes": [],
+      "route": "REJECT_INPUT",
+      "priority": "ERROR",
+      "specialty": null,
+      "timeframe": "NOT_APPLICABLE",
+      "human_review": false
+    }
+  },
+  {
+    "id": "conclusion-conflict",
+    "title": "Конфликт structured data и conclusion",
+    "description": "Structured finding присутствует, но conclusion утверждает отсутствие патологии.",
+    "modality": "CT_CHEST",
+    "payload_file": "payloads/conclusion_conflict.json",
+    "expected": {
+      "validation": "valid",
+      "finding_codes": ["CT_LUNG_NODULE"],
+      "route": "HUMAN_REVIEW",
+      "priority": "REVIEW",
+      "specialty": "RADIOLOGIST",
+      "timeframe": "BEFORE_ROUTING",
+      "human_review": true
+    }
+  }
+]
+

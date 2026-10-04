@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Третье мнение — интерфейс маршрутизации результатов лучевой диагностики" />
+    <title>Третье мнение · Кабинет врача</title>
+    <link rel="stylesheet" href="/static/styles.css?v=1.4.0" />
+    <script src="/static/app.js?v=1.4.0" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <a class="cabinet-jury-switch" href="/patient"><span>↔</span><small>Для демонстрации</small><strong>Кабинет пациента</strong></a>
+
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div><strong>Третье мнение</strong><small>Clinical Routing</small></div>
+        </div>
+
+        <nav class="nav-list" aria-label="Основная навигация">
+          <button class="nav-item active" data-view="dashboard" type="button">
+            <span class="nav-icon">⌂</span><span>Главная</span>
+          </button>
+          <button class="nav-item" data-view="history" type="button">
+            <span class="nav-icon">▤</span><span>Исследования</span>
+            <span class="nav-count" id="history-nav-count">0</span>
+          </button>
+        </nav>
+
+        <div class="header-actions">
+          <div class="service-status"><span></span>Система работает</div>
+          <a class="patient-cabinet-link" href="/patient">Кабинет пациента</a>
+          <a class="docs-link" href="/docs" target="_blank" rel="noreferrer">API</a>
+          <div class="doctor-avatar" aria-label="Профиль врача">ВР</div>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section class="view active" id="dashboard-view">
+          <section class="doctor-hero">
+            <div class="hero-copy">
+              <div class="hero-title-row"><h1 id="page-title">Кабинет врача</h1><button class="reset-demo-button" id="reset-demo-button" type="button"><span>↻</span>Сбросить демо</button></div>
+            </div>
+            <div class="doctor-card">
+              <div class="doctor-portrait" aria-hidden="true">
+                <span class="portrait-head"></span><span class="portrait-body"></span>
+              </div>
+              <div>
+                <small>Сегодня на дежурстве</small><strong>Врач-рентгенолог</strong>
+                <p>В работе: <b id="doctor-case-count">0</b> исследований</p>
+              </div>
+              <span class="doctor-arrow">›</span>
+            </div>
+          </section>
+
+          <div class="metric-grid" aria-label="Сводка по анализам">
+            <article class="metric-card metric-purple">
+              <div class="metric-icon">▤</div><div><strong id="metric-total">0</strong><span>Всего анализов</span></div><i></i>
+            </article>
+            <article class="metric-card metric-violet">
+              <div class="metric-icon">◷</div><div><strong id="metric-pending">0</strong><span>Ожидают подтверждения</span></div><i></i>
+            </article>
+            <article class="metric-card metric-red">
+              <div class="metric-icon">!</div><div><strong id="metric-attention">0</strong><span>Требуют внимания</span></div><i></i>
+            </article>
+          </div>
+
+          <article class="upload-workspace">
+            <div class="upload-visual" aria-hidden="true">
+              <div class="upload-orbit orbit-one"></div><div class="upload-orbit orbit-two"></div>
+              <div class="upload-file"><span>↑</span></div>
+            </div>
+            <div class="upload-content">
+              <div class="upload-heading">
+                <div>
+                  <span class="step-label">Новое исследование</span>
+                  <h2>Добавить медицинское исследование</h2>
+                </div>
+                <span class="demo-badge">Демо-данные</span>
+              </div>
+
+              <div class="modality-grid" aria-label="Выбор модальности">
+                <button class="modality-option active" data-modality="CT_CHEST" type="button">
+                  <span class="modality-picture ct-picture">◎</span><strong>КТ</strong>
+                </button>
+                <button class="modality-option" data-modality="MAMMOGRAPHY" type="button">
+                  <span class="modality-picture mammography-picture">◒</span><strong>Маммография</strong>
+                </button>
+                <button class="modality-option disabled" type="button" disabled>
+                  <span class="modality-picture">◉</span><strong>МРТ</strong><small>скоро</small>
+                </button>
+                <button class="modality-option disabled" type="button" disabled>
+                  <span class="modality-picture">◫</span><strong>Рентгенография</strong><small>скоро</small>
+                </button>
+              </div>
+
+              <div class="analysis-form">
+                <div class="field-group">
+                  <label for="case-select">Сценарий исследования</label>
+                  <div class="select-wrap">
+                    <select id="case-select" aria-describedby="case-description"><option value="">Загрузка сценариев…</option></select>
+                  </div>
+                  <p id="case-description">Выберите подготовленный клинический сценарий.</p>
+                </div>
+                <button class="primary-button" id="analyze-button" type="button" disabled>
+                  <span class="button-icon" aria-hidden="true">↑</span><span class="button-label">Запустить анализ</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <section class="recent-section" aria-labelledby="recent-title">
+            <div class="section-heading-row">
+              <div><span class="step-label">Журнал</span><h2 id="recent-title">Последние поступления</h2></div>
+              <button class="text-button" id="open-all-history" type="button">Все исследования <span>›</span></button>
+            </div>
+            <div class="recent-list" id="recent-list"><div class="recent-empty">Загрузка последних исследований…</div></div>
+          </section>
+
+          <section class="result-section hidden" id="result-section" aria-live="polite">
+            <div class="result-heading">
+              <div><span class="step-label">Результат обработки</span><h2>Черновик маршрута пациента</h2></div>
+              <span class="status-pill" id="workflow-status">Ожидает проверки</span>
+            </div>
+
+            <div class="result-grid">
+              <article class="result-card study-card">
+                <div class="result-card-title">
+                  <span class="card-symbol">AI</span><div><small>Исследование</small><h3 id="result-modality">—</h3></div>
+                </div>
+                <dl class="study-facts">
+                  <div><dt>Study ID</dt><dd id="result-study-id">—</dd></div>
+                  <div><dt>Патология</dt><dd id="result-pathology">—</dd></div>
+                  <div><dt>Уверенность ИИ</dt><dd id="result-confidence">—</dd></div>
+                </dl>
+                <div class="finding-box"><span>Выявленная находка</span><strong id="result-finding">—</strong><small id="result-measurements"></small></div>
+              </article>
+
+              <article class="result-card route-card">
+                <div class="result-card-title">
+                  <span class="card-symbol route">↗</span><div><small>Рекомендованный маршрут</small><h3 id="result-action">—</h3></div>
+                </div>
+                <div class="route-details">
+                  <div><span>Приоритет</span><strong class="priority-pill" id="result-priority">—</strong></div>
+                  <div><span>Специалист</span><strong id="result-specialty">—</strong></div>
+                  <div><span>Срок</span><strong id="result-timeframe">—</strong></div>
+                </div>
+                <p class="route-reason" id="result-reason">—</p>
+              </article>
+            </div>
+
+            <article class="safety-panel" id="safety-panel">
+              <div class="safety-icon">✓</div>
+              <div class="safety-copy"><span>Safety Layer</span><strong id="safety-title">Маршрут готов к проверке врачом</strong><p id="safety-message">Автоматическое уведомление пациента отключено.</p></div>
+              <div class="safety-meta"><small>Статус</small><b id="safety-status">—</b></div>
+            </article>
+
+            <article class="traceability-panel" id="traceability-panel">
+              <div class="trace-heading">
+                <div><span class="step-label">Прослеживаемость решения</span><h3>Почему система предложила этот маршрут</h3><p>Каждый вывод связан с исходным полем, нормализованной находкой и применённым правилом.</p></div>
+                <span class="audit-badge">Аудируемая цепочка</span>
+              </div>
+              <div class="trace-flow" id="trace-flow" aria-label="Цепочка принятия решения"></div>
+              <div class="trace-detail-grid">
+                <section class="evidence-card">
+                  <div class="trace-card-heading">
+                    <div><small>Основания</small><strong>Факты из результата ИИ</strong></div>
+                    <button class="source-link" id="open-source-button" type="button">Открыть исходный текст</button>
+                  </div>
+                  <div class="evidence-list" id="trace-evidence"></div>
+                </section>
+                <section class="rule-card">
+                  <small>Паспорт решения</small>
+                  <dl>
+                    <div><dt>Правило</dt><dd id="trace-rule-id">—</dd></div>
+                    <div><dt>Политика безопасности</dt><dd id="trace-policy-version">—</dd></div>
+                    <div><dt>Контроль</dt><dd id="trace-human-review">—</dd></div>
+                  </dl>
+                </section>
+              </div>
+            </article>
+
+            <details class="source-details" id="source-details">
+              <summary><span>Исходный текст результата ИИ <b>Связан с маршрутом</b></span><small>Развернуть описание и заключение</small></summary>
+              <div class="source-content"><div><span>Описание</span><p id="source-report">—</p></div><div><span>Заключение</span><p id="source-conclusion">—</p></div></div>
+            </details>
+
+            <article class="care-journey-panel" id="care-journey-panel">
+              <div class="care-heading">
+                <div><span class="step-label">Врачебное решение</span><h3>Подтвердить следующий шаг пациента</h3><p>Врач подтверждает только маршрут. Дату и время пациент выбирает самостоятельно в личном кабинете.</p></div>
+                <span class="care-stage-badge" id="care-stage-badge">Решение врача</span>
+              </div>
+
+              <section id="clinician-review-step">
+                <div class="decision-grid" role="radiogroup" aria-label="Решение врача">
+                  <label class="decision-option">
+                    <input type="radio" name="review-choice" value="RECOMMENDED_SPECIALIST" checked />
+                    <span class="decision-marker">1</span>
+                    <span><small>Подтвердить рекомендацию</small><strong id="recommended-choice-title">Консультация специалиста</strong><em>Маршрут, предложенный системой после проверки</em></span>
+                  </label>
+                  <label class="decision-option">
+                    <input type="radio" name="review-choice" value="REPEAT_CONSULTATION" />
+                    <span class="decision-marker">2</span>
+                    <span><small>Изменить следующий шаг</small><strong>Повторная консультация</strong><em>Вернуть пациента к лечащему или направившему врачу</em></span>
+                  </label>
+                </div>
+
+                <label class="review-note-field" for="clinician-note">
+                  <span>Комментарий врача <small>необязательно</small></span>
+                  <textarea id="clinician-note" maxlength="500" rows="3" placeholder="Например: находка подтверждена, рекомендована консультация"></textarea>
+                </label>
+
+                <div class="review-action-row">
+                  <p class="review-blocked-message hidden" id="review-blocked-message">Safety Layer заблокировал маршрут. Сначала требуется ручная проверка данных.</p>
+                  <button class="primary-button" id="confirm-review-button" type="button"><span class="button-icon">✓</span><span class="button-label">Подтвердить маршрутизацию</span></button>
+                </div>
+              </section>
+
+              <section class="handoff-confirmation hidden" id="handoff-confirmation">
+                <div class="confirmation-icon">✓</div>
+                <div><span id="handoff-status">Маршрутизация подтверждена</span><h4 id="patient-specialty">—</h4><p id="patient-notification-message">—</p></div>
+                <div class="handoff-actions"><strong>Дату и время выбирает пациент</strong><a href="/patient">Открыть кабинет пациента ›</a></div>
+              </section>
+            </article>
+
+            <div class="review-footer" id="review-footer">
+              <div class="review-lock" id="review-lock">⌁</div>
+              <div><strong id="review-footer-title">Решение не отправлено пациенту</strong><p id="review-footer-message">Требуется подтверждение медицинским специалистом.</p></div>
+              <span id="result-analysis-id">ID: —</span>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="history-view">
+          <div class="history-heading">
+            <div><p class="section-kicker">Журнал исследований</p><h1>Все исследования</h1><p>Обработанные исследования и текущие статусы врачебной проверки.</p></div>
+            <button class="secondary-button" id="refresh-history" type="button">Обновить</button>
+          </div>
+          <article class="history-card">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Исследование</th><th>Модальность</th><th>Приоритет</th><th>Статус</th><th>Создано</th><th></th></tr></thead>
+                <tbody id="history-body"><tr><td colspan="6" class="empty-cell">Загрузка истории…</td></tr></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <dialog class="app-dialog" id="reset-demo-dialog" aria-labelledby="reset-dialog-title">
+      <div class="dialog-icon" aria-hidden="true">↻</div>
+      <h2 id="reset-dialog-title">Начать демонстрацию заново?</h2>
+      <p>Будут удалены только синтетические исследования, решения врача и демонстрационные записи пациента.</p>
+      <div class="dialog-note"><span>✓</span>Настройки, интерфейс и сценарии останутся без изменений.</div>
+      <div class="dialog-actions">
+        <button class="dialog-cancel" id="reset-dialog-cancel" type="button">Отмена</button>
+        <button class="dialog-confirm" id="reset-dialog-confirm" type="button">Сбросить демо</button>
+      </div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

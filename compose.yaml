@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: third-opinion-routing:1.4.0
+    init: true
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      DATABASE_PATH: /app/storage/third_opinion.sqlite3
+    volumes:
+      - third_opinion_data:/app/storage
+
+volumes:
+  third_opinion_data:

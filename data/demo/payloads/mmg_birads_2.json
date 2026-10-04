@@ -1,0 +1,32 @@
+{
+  "studyIUID": "1.2.643.demo.mmg.birads2.001",
+  "aiResult": {
+    "seriesIUID": "1.2.643.demo.mmg.birads2.001.1",
+    "pathologyFlag": true,
+    "norma": 0,
+    "confidenceLevel": 32,
+    "modelId": 2000,
+    "modelVersion": "1.0.0-demo",
+    "report": "Справа определяется доброкачественное образование. Подозрительные кальцинаты не выявлены.",
+    "conclusion": "Правая молочная железа BI-RADS 2. Левая молочная железа BI-RADS 1.",
+    "dateTimeParams": {},
+    "probParams": {
+      "mmg": {
+        "mmg_conf_level": 32,
+        "mmg_pgmi_right": "G",
+        "mmg_pgmi_left": "G",
+        "mmg_acr_right": "B",
+        "mmg_acr_left": "B",
+        "mmg_rads_right": 2,
+        "mmg_rads_left": 1,
+        "mmg_malignancy_right": 0,
+        "mmg_benign_right": 1,
+        "mmg_calcification_right": 0,
+        "mmg_malignancy_left": 0,
+        "mmg_benign_left": 0,
+        "mmg_calcification_left": 0
+      }
+    }
+  }
+}
+

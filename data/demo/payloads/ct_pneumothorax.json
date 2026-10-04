@@ -1,0 +1,22 @@
+{
+  "studyIUID": "1.2.643.demo.ct.pneumothorax.001",
+  "aiResult": {
+    "seriesIUID": "1.2.643.demo.ct.pneumothorax.001.1",
+    "pathologyFlag": true,
+    "norma": 0,
+    "confidenceLevel": 96,
+    "modelId": 1000,
+    "modelVersion": "1.0.0-demo",
+    "report": "Определяется свободный газ в правой плевральной полости, объём 124 мл.",
+    "conclusion": "КТ-признаки правостороннего пневмоторакса.",
+    "dateTimeParams": {},
+    "probParams": {
+      "ct_chest_pneumotorax": {
+        "ct_chest_pneumotorax_conf_level": 96,
+        "ct_chest_pneumotorax_vol_right": 124,
+        "ct_chest_pneumotorax_vol_left": 0
+      }
+    }
+  }
+}
+

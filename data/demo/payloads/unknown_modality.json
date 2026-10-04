@@ -1,0 +1,21 @@
+{
+  "studyIUID": "1.2.643.demo.unknown.001",
+  "aiResult": {
+    "seriesIUID": "1.2.643.demo.unknown.001.1",
+    "pathologyFlag": true,
+    "norma": 0,
+    "confidenceLevel": 81,
+    "modelId": 9000,
+    "modelVersion": "1.0.0-demo",
+    "report": "Синтетический результат неподдерживаемого исследования.",
+    "conclusion": "Требуется проверка поддерживаемости модальности.",
+    "dateTimeParams": {},
+    "probParams": {
+      "future_modality": {
+        "future_finding": 1,
+        "future_confidence": 81
+      }
+    }
+  }
+}
+

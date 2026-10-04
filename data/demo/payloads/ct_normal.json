@@ -1,0 +1,20 @@
+{
+  "studyIUID": "1.2.643.demo.ct.normal.001",
+  "aiResult": {
+    "seriesIUID": "1.2.643.demo.ct.normal.001.1",
+    "pathologyFlag": false,
+    "norma": 1,
+    "confidenceLevel": 3,
+    "modelId": 1000,
+    "modelVersion": "1.0.0-demo",
+    "report": "Патологических изменений органов грудной клетки не выявлено.",
+    "conclusion": "КТ-признаков патологии органов грудной клетки не выявлено.",
+    "dateTimeParams": {},
+    "probParams": {
+      "ct_lc": {
+        "ct_lc_conf_level": 3,
+        "ct_lc_num": 0
+      }
+    }
+  }
+}

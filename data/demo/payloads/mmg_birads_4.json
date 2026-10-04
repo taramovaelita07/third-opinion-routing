@@ -1,0 +1,33 @@
+{
+  "studyIUID": "1.2.643.demo.mmg.birads4.001",
+  "aiResult": {
+    "seriesIUID": "1.2.643.demo.mmg.birads4.001.1",
+    "pathologyFlag": true,
+    "norma": 0,
+    "confidenceLevel": 89,
+    "modelId": 2000,
+    "modelVersion": "1.0.0-demo",
+    "report": "В верхне-наружном квадранте правой молочной железы определяется подозрительное образование.",
+    "conclusion": "Правая молочная железа BI-RADS 4. Левая молочная железа BI-RADS 1.",
+    "dateTimeParams": {},
+    "probParams": {
+      "mmg": {
+        "mmg_conf_level": 89,
+        "mmg_pgmi_right": "P",
+        "mmg_pgmi_left": "P",
+        "mmg_acr_right": "C",
+        "mmg_acr_left": "C",
+        "mmg_rads_right": 4,
+        "mmg_rads_left": 1,
+        "mmg_malignancy_right": 1,
+        "mmg_benign_right": 0,
+        "mmg_calcification_right": 1,
+        "mmg_architect_right": 1,
+        "mmg_malignancy_left": 0,
+        "mmg_benign_left": 0,
+        "mmg_calcification_left": 0
+      }
+    }
+  }
+}
+

@@ -1,0 +1,24 @@
+{
+  "studyIUID": "1.2.643.demo.ct.lowconfidence.001",
+  "aiResult": {
+    "seriesIUID": "1.2.643.demo.ct.lowconfidence.001.1",
+    "pathologyFlag": true,
+    "norma": 0,
+    "confidenceLevel": 38,
+    "modelId": 1000,
+    "modelVersion": "1.0.0-demo",
+    "report": "В правом лёгком вероятно определяется небольшой очаг.",
+    "conclusion": "Данные за возможное очаговое образование правого лёгкого.",
+    "dateTimeParams": {},
+    "probParams": {
+      "ct_lc": {
+        "ct_lc_conf_level": 38,
+        "ct_lc_lin_x": "6",
+        "ct_lc_lin_y": "5",
+        "ct_lc_volume": "80",
+        "ct_lc_num": 1
+      }
+    }
+  }
+}
+
