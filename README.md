@@ -13,6 +13,10 @@
 
 ## Быстрые ссылки
 
+- **[Публичный кабинет врача](https://third-opinion-routing.onrender.com/)**
+- **[Публичный кабинет пациента](https://third-opinion-routing.onrender.com/patient)**
+- [Публичный Swagger / OpenAPI](https://third-opinion-routing.onrender.com/docs)
+- [Публичный health check](https://third-opinion-routing.onrender.com/health)
 - Кабинет врача локально: <http://localhost:8000/>
 - Кабинет пациента локально: <http://localhost:8000/patient>
 - Swagger / OpenAPI: <http://localhost:8000/docs>
@@ -23,7 +27,8 @@
 - [Текст выступления](HACKATHON_DEMO_SPEECH_RU.md)
 - [Публичное размещение](DEPLOY_RENDER_RU.md)
 
-Публичный адрес Render будет добавлен после финального развёртывания.
+Публичная демонстрация развёрнута на бесплатном тарифе Render. После периода
+бездействия первый запуск может занять около минуты.
 
 ## Проблема (Problem)
 

@@ -25,12 +25,12 @@ Render собирает приложение из `Dockerfile` и выдаёт �
 
 ## Проверка публичного адреса
 
-Заменить `<PUBLIC_URL>` на адрес, который покажет Render:
+Публичный адрес проекта: <https://third-opinion-routing.onrender.com>.
 
-- кабинет врача: `<PUBLIC_URL>/`;
-- кабинет пациента: `<PUBLIC_URL>/patient`;
-- проверка сервера: `<PUBLIC_URL>/health`;
-- Swagger: `<PUBLIC_URL>/docs`.
+- кабинет врача: <https://third-opinion-routing.onrender.com/>;
+- кабинет пациента: <https://third-opinion-routing.onrender.com/patient>;
+- проверка сервера: <https://third-opinion-routing.onrender.com/health>;
+- Swagger: <https://third-opinion-routing.onrender.com/docs>.
 
 На странице `/health` должна быть версия `1.4.0`.
 
